@@ -26,5 +26,4 @@
 - hosts: docker_containers
   remote_user: root
   roles:
-    - basic-server
     - mpt-devel

@@ -12,6 +12,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 ---
+- name: Basic server setup
+  include_role:
+    name: basic-server
+
 # tasks file for load-generator-dev
 - name: Build GRU
   include: gru.yml
@@ -22,8 +26,8 @@
 - name: Build BMIC
   include: bmic.yml
 
-# - name: Enable NTP
-#   include: ntpdate.yml
+- name: Enable NTP
+  include: ntpdate.yml
 
 - name: Build MPT
   include: mpt.yml
