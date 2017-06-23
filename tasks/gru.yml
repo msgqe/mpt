@@ -1,0 +1,35 @@
+# Copyright 2017 Red Hat, Inc. and/or its affiliates
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+---
+# tasks file for GRU
+- name: Ensure that GRU dependency repositories are installed (RHEL 6)
+  when: ansible_distribution_major_version|int == 6
+  get_url:
+    url: "{{ gru_dev_el6_missing }}"
+    dest: "/etc/yum.repos.d/el6-missing.repo"
+    force: yes
+
+- name: Ensure that GRU dependencies are installed (RHEL 7)
+  yum: name="{{ gru_common_dependencies }}" state=present enablerepo=epel
+
+- name: Download GRU
+  git:
+    repo: 'https://github.com/orpiske/gru.git'
+    dest: "{{ gru_src_dir }}"
+
+- name: Build GRU
+  shell: mkdir -p "{{ gru_build_dir }}" && cd "{{ gru_build_dir }}" && cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo .. && make && make install
+
+- name: Add directory to the profile path
+  shell: echo "export LD_LIBRARY_PATH=\${LD_LIBRARY_PATH}:/usr/local/lib64:/usr/local/lib" > /etc/profile.d/gru.sh

@@ -1,0 +1,25 @@
+# Copyright 2017 Red Hat, Inc. and/or its affiliates
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+---
+# tasks file for BMIC
+- name: Ensure that BMIC dependencies are installed
+  yum: name="{{ bmic_common_dependencies }}" state=present
+
+- name: Download BMIC
+  git:
+    repo: 'https://github.com/orpiske/bmic.git'
+    dest: "{{ bmic_src_dir }}"
+
+- name: Build BMIC
+  shell: mkdir -p "{{ bmic_build_dir }}" && cd "{{ bmic_build_dir }}" && cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo .. && make && make install

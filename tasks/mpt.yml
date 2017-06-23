@@ -1,0 +1,53 @@
+# Copyright 2017 Red Hat, Inc. and/or its affiliates
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+---
+# tasks file for MPT
+- name: Ensure that Paho MQTT dependencies are installed
+  get_url:
+    url: "https://copr.fedorainfracloud.org/coprs/orpiske/paho-testing/repo/epel-{{ ansible_distribution_major_version }}/orpiske-paho-testing-epel-{{ ansible_distribution_major_version }}.repo"
+    dest: "/etc/yum.repos.d/paho-testing.repo"
+    force: yes
+
+- name: Ensure that MPT dependencies are installed
+  yum: name="{{ mpt_common_dependencies }}" state=present enablerepo=epel
+
+- name: Download MPT
+  git:
+    repo: 'https://github.com/orpiske/msg-perf-tool.git'
+    version: mpt-maestro
+    dest: "{{ mpt_src_dir }}"
+
+- name: Build MPT (RHEL 7)
+  when: (ansible_distribution_major_version|int >= 7)
+  shell: mkdir -p "{{ mpt_build_dir }}" && cd "{{ mpt_build_dir }}" && cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo .. && make clean && make && make install
+
+- name: Build MPT (RHEL 6)
+  when: (ansible_distribution_major_version|int == 6)
+  shell: mkdir -p "{{ mpt_build_dir }}" && cd "{{ mpt_build_dir }}" && cmake -DSYSTEMD_SUPPORT=False -DMSGPACK_LEGACY_SUPPORT -DCMAKE_BUILD_TYPE=RelWithDebInfo .. && make clean && make && make install
+
+- name: Configure receiver services
+  when:
+    - mpt_receiver is defined and mpt_receiver == true
+  include: receiver-services.yml
+
+- name: Configure sender services
+  when:
+    - mpt_sender is defined and mpt_sender == true
+  include: sender-services.yml
+
+
+- name: Configure inspector services
+  when:
+    - mpt_inspector is defined and mpt_inspector == true
+  include: inspector-services.yml
