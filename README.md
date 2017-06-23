@@ -3,6 +3,12 @@ Role Name
 
 This role is used to build a development version of the [Messaging Performance Tool](https://github.com/orpiske/msg-perf-tool). Although functional, this role is still in development.
 
+Build/Test Status
+------------
+
+Linux Build Status: [![Linux Build Status](https://api.travis-ci.org/msgqe/mpt-devel.svg?branch=master)](https://travis-ci.org/msgqe/mpt-devel)
+
+
 Requirements
 ------------
 
