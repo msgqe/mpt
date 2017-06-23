@@ -13,7 +13,7 @@
 # limitations under the License.
 - name: Configure MPT inspector daemon
   template:
-    src: templates/mpt-inspector-daemon.j2
+    src: templates/mpt-broker-inspector.j2
     dest: "/etc/sysconfig/mpt-broker-inspector"
     owner: "root"
     group: "root"
