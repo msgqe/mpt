@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-- src: https://github.com/orpiske/provision_docker.git
+- src: https://github.com/chrismeyersfsu/provision_docker.git
   scm: git
   name: provision_docker
 
