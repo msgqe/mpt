@@ -37,3 +37,4 @@ mpt_log_dir: /var/log/mpt
 mpt_sender: true
 mpt_receiver: true
 mpt_inspector: false
+mpt_devel_skip_provisioning: false

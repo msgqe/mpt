@@ -24,6 +24,7 @@ Role Variables
 | `mpt_receiver` | true | Whether to keep the mpt_receiver_daemon in a running state |
 | `mpt_sender` | true | Whether to keep the mpt_sender_daemon in a running state |
 | `mpt_inspector` | false | Whether to keep the mpt_inspector_daemon in a running state |
+| `mpt_devel_skip_provisioning` | false | Whether to skip base system provisioning |
 
 
 Dependencies

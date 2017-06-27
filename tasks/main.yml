@@ -13,10 +13,10 @@
 # limitations under the License.
 ---
 - name: Basic server setup
+  when: mpt_devel_skip_provisioning is defined and mpt_devel_skip_provisioning is true
   include_role:
     name: basic-server
 
-# tasks file for load-generator-dev
 - name: Build GRU
   include: gru.yml
 
