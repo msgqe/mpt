@@ -13,3 +13,22 @@
 # limitations under the License.
 ---
 # handlers file for load-generator-dev
+- name: Restart sender daemon
+  service:
+      name: mpt-sender-daemon
+      state: restarted
+  listen: "restart sender daemon"
+
+
+- name: Restart receiver daemon
+  service:
+      name: mpt-receiver-daemon
+      state: restarted
+  listen: "restart receiver daemon"
+
+
+- name: Restart inspector daemon
+  service:
+      name: mpt-receiver-daemon
+      state: restarted
+  listen: "restart inspector daemon"
