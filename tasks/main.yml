@@ -12,11 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 ---
-- name: Basic server setup
-  when: mpt_devel_skip_provisioning is defined and mpt_devel_skip_provisioning is true
-  include_role:
-    name: basic-server
-
 - name: Build GRU
   include: gru.yml
 
