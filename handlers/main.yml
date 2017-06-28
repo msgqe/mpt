@@ -29,6 +29,6 @@
 
 - name: Restart inspector daemon
   service:
-      name: mpt-inspector-daemon
+      name: mpt-broker-inspector
       state: restarted
   listen: "restart inspector daemon"
