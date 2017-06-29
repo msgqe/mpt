@@ -14,7 +14,7 @@
 ---
 # GRU defaults
 gru_dev_el6_missing: https://copr.fedorainfracloud.org/coprs/orpiske/el6-missing/repo/epel-6/orpiske-el6-missing-epel-6.repo
-gru_common_dependencies: git,uriparser,uriparser-devel,cmake,doxygen,gcc,gcc-c++,make
+gru_common_dependencies: git,uriparser,uriparser-devel,cmake,doxygen,gcc,gcc-c++,make,ccache
 gru_src_dir: /src/gru
 gru_build_dir: "{{ gru_src_dir }}/build"
 
