@@ -19,7 +19,7 @@ MAESTRO_BROKER_URL='{{ mpt_maestro_url }}'
 MPT_LOG_DIR='{{ mpt_log_dir }}'
 
 # The log level
-MPT_LOG_LEVEL=info
+MPT_LOG_LEVEL='{{ mpt_log_level | default('info') }}'
 
 # Node name
 NODE_NAME=receiver@{{ inventory_hostname }}

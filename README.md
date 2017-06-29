@@ -21,9 +21,11 @@ Role Variables
 |-------------------|---------------------|----------------------|
 | `mpt_maestro_url` | http://localhost:1883 | The URL for the maestro broker |
 | `mpt_log_dir` | /var/log/mpt | The log directory for the MPT |
+| `mpt_log_level` | info | Set the log level for the mpt daemons |
 | `mpt_receiver` | true | Whether to keep the mpt_receiver_daemon in a running state |
 | `mpt_sender` | true | Whether to keep the mpt_sender_daemon in a running state |
 | `mpt_inspector` | false | Whether to keep the mpt_inspector_daemon in a running state |
+
 
 Dependencies
 ------------
