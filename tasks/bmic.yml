@@ -14,7 +14,7 @@
 ---
 # tasks file for BMIC
 - name: Ensure that BMIC dependencies are installed
-  yum: name="{{ bmic_common_dependencies }}" state=present
+  yum: name="{{ bmic_common_dependencies }}" state=latest
 
 - name: Download BMIC
   git:

@@ -14,7 +14,7 @@
 ---
 # tasks file for LiteStomp
 - name: Ensure that LiteStomp dependencies are installed (RHEL 7)
-  yum: name="{{ litestomp_common_dependencies }}" state=present
+  yum: name="{{ litestomp_common_dependencies }}" state=latest
 
 - name: Download LiteStomp
   git:

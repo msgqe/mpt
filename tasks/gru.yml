@@ -21,7 +21,7 @@
     force: yes
 
 - name: Ensure that GRU dependencies are installed (RHEL 7)
-  yum: name="{{ gru_common_dependencies }}" state=present enablerepo=epel
+  yum: name="{{ gru_common_dependencies }}" state=latest enablerepo=epel
 
 - name: Download GRU
   git:
