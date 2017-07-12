@@ -20,7 +20,7 @@
     force: yes
 
 - name: Ensure that MPT dependencies are installed
-  yum: name="{{ mpt_common_dependencies }}" state=present enablerepo=epel
+  yum: name="{{ mpt_common_dependencies }}" state=latest enablerepo=epel
 
 - name: Download MPT
   git:
