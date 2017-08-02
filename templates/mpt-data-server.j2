@@ -11,30 +11,6 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
----
-# handlers file for load-generator-dev
-- name: Restart sender daemon
-  service:
-      name: mpt-sender-daemon
-      state: restarted
-  listen: "restart sender daemon"
 
-
-- name: Restart receiver daemon
-  service:
-      name: mpt-receiver-daemon
-      state: restarted
-  listen: "restart receiver daemon"
-
-
-- name: Restart inspector daemon
-  service:
-      name: mpt-broker-inspector
-      state: restarted
-  listen: "restart inspector daemon"
-
-- name: Restart data server daemon
-  service:
-      name: mpt-data-server
-      state: restarted
-  listen: "restart data server daemon"
+# The log directory
+MPT_LOG_DIR='{{ mpt_log_dir }}'

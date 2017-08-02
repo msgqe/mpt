@@ -86,3 +86,13 @@
     group: "root"
     mode: 0755
   notify: "Restart inspector daemon"
+
+
+- name: Configure data server services
+  template:
+    src: templates/mpt-data-server.j2
+    dest: "/etc/sysconfig/mpt-data-server"
+    owner: "root"
+    group: "root"
+    mode: 0755
+  notify: "Restart data server daemon"
