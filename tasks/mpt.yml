@@ -25,6 +25,18 @@
     dest: "/etc/yum.repos.d/paho-testing.repo"
     force: yes
 
+- name: Check TPP tools repository repo file presence
+  stat: path="/etc/yum.repos.d/opiske-tpp-testing.repo"
+  register: tpp_repo_path_st
+
+- name: Ensure that TPP tools repository is installed
+  when:
+    - tpp_repo_path_st.stat.exists is not defined or tpp_repo_path_st.stat.exists == false
+  get_url:
+    url: "https://copr.fedorainfracloud.org/coprs/orpiske/third-party-tools-testing/repo/epel-{{ ansible_distribution_major_version }}/orpiske-third-party-tools-testing-epel-{{ ansible_distribution_major_version }}.repo"
+    dest: "/etc/yum.repos.d/opiske-tpp-testing.repo"
+    force: yes
+
 - name: Ensure that MPT dependencies are installed
   yum: name="{{ mpt_common_dependencies }}" state=latest enablerepo=epel
 
