@@ -31,6 +31,7 @@ bmic_build_dir: "{{ bmic_src_dir }}/build"
 # MPT defaults:
 mpt_common_dependencies: hdr-histogram-c, hdr-histogram-c-devel, paho-c, paho-c-devel, libuuid, libuuid-devel, zlib, zlib-devel, readline, readline-devel, qpid-proton-c, qpid-proton-c-devel, gdb, gdb-gdbserver, msgpack, msgpack-devel
 mpt_src_dir: /src/mpt
+mpt_scm_branch: mpt-maestro
 mpt_build_dir: "{{ mpt_src_dir }}/build"
 mpt_maestro_url: mqtt://localhost:1883
 mpt_log_dir: /var/log/mpt

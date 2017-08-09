@@ -43,7 +43,7 @@
 - name: Download MPT
   git:
     repo: 'https://github.com/orpiske/msg-perf-tool.git'
-    version: mpt-maestro
+    version: "{{ mpt_scm_branch }}"
     dest: "{{ mpt_src_dir }}"
 
 - name: Build MPT (RHEL 7)
