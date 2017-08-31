@@ -23,7 +23,17 @@
       provision_docker_inventory: "{{ inventory }}"
       provision_docker_privileged: true
 
-- hosts: docker_containers
+- name: test binary deployment
+  hosts: docker_containers
   remote_user: root
+  roles:
+    - mpt-devel
+
+
+- name: test source deployment
+  hosts: docker_containers
+  remote_user: root
+  vars:
+    mpt_devel: true
   roles:
     - mpt-devel
