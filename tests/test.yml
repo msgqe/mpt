@@ -27,7 +27,7 @@
   hosts: docker_containers
   remote_user: root
   roles:
-    - mpt-devel
+    - mpt
 
 
 - name: test source deployment
@@ -36,4 +36,4 @@
   vars:
     mpt_devel: true
   roles:
-    - mpt-devel
+    - mpt
