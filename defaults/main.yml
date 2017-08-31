@@ -39,3 +39,12 @@ mpt_sender: true
 mpt_receiver: true
 mpt_inspector: false
 mpt_devel_skip_provisioning: false
+
+
+mpt_devel: false
+mpt_copr_user: orpiske
+mpt_copr_base_url: "https://copr.fedorainfracloud.org/coprs/{{ mpt_copr_user }}"
+centos_copr_repos: [ "{{ mpt_copr_base_url }}/orp-tools-testing/repo/epel-7/{{ mpt_copr_user }}-orp-tools-testing-epel-7.repo", "{{ mpt_copr_base_url }}/third-party-tools-testing/repo/epel-7/{{ mpt_copr_user }}-third-party-tools-testing-epel-7.repo", "{{ mpt_copr_base_url }}/paho-testing/repo/epel-7/{{ mpt_copr_user}}-paho-testing-epel-7.repo" ]
+
+mpt_copr_el_packages: yum-plugin-copr
+mpt_copr_fedora_packages: dnf-plugins-core

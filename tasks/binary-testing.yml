@@ -1,0 +1,66 @@
+# Copyright 2017 Red Hat, Inc. and/or its affiliates
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+---
+# tasks file for GRU
+
+# Work-around bugs #1319685 and #1383782
+# Ref: https://bugzilla.redhat.com/show_bug.cgi?id=1383782
+# Ref: https://bugzilla.redhat.com/show_bug.cgi?id=1319685
+- name: Download COPR repository (CentOS)
+  when:
+    - ansible_distribution == 'CentOS'
+  get_url:
+    url: "{{ item }}"
+    dest: "/etc/yum.repos.d/{{ item | basename }}"
+    force: yes
+  with_items:
+    - "{{ centos_copr_repos }}"
+
+- name: Install COPR plugin (RHEL)
+  when:
+    - ansible_distribution == 'RedHat'
+  package: name="{{ mpt_copr_el_packages }}" state=latest enablerepo=epel
+
+- name: Install COPR plugin (RHEL)
+  when:
+    - ansible_distribution == 'Fedora'
+  package: name="{{ mpt_copr_fedora_packages }}" state=latest enablerepo=epel
+
+- name: Ensure that testing COPR is installed (RHEL/CentOS)
+  when:
+    - ansible_distribution == 'RedHat' or ansible_distribution == 'Fedora'
+  command: yum copr enable -y "{{ item }}"
+  with_items:
+    - orpiske/orp-tools-testing
+    - orpiske/third-party-tools-testing
+    - orpiske/paho-testing
+
+- name: Ensure that testing COPR is installed (Fedora)
+  when:
+    - ansible_distribution == 'Fedora'
+  command: dnf copr enable -y "{{ item }}"
+  with_items:
+    - orpiske/orp-tools-testing
+    - orpiske/third-party-tools-testing
+    - orpiske/paho-testing
+
+- name: Install Messaging Performance Tool (MPT)
+  when:
+    - ansible_distribution == 'RedHat' or ansible_distribution == 'CentOS'
+  yum: name="msg-perf-tool" state=latest enablerepo=epel
+
+- name: Install COPR plugin (RHEL)
+  when:
+    - ansible_distribution == 'Fedora'
+  dnf: name="msg-perf-tool" state=latest enablerepo=epel
