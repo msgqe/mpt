@@ -1,0 +1,42 @@
+- name: Configure receiver services
+  when:
+    - mpt_receiver is defined and mpt_receiver == true
+  template:
+    src: templates/mpt-receiver-daemon.j2
+    dest: "/etc/sysconfig/mpt-receiver-daemon"
+    owner: "root"
+    group: "root"
+    mode: 0755
+  notify: "Restart receiver daemon"
+
+- name: Configure sender services
+  when:
+    - mpt_sender is defined and mpt_sender == true
+  template:
+    src: templates/mpt-sender-daemon.j2
+    dest: "/etc/sysconfig/mpt-sender-daemon"
+    owner: "root"
+    group: "root"
+    mode: 0755
+  notify: "Restart sender daemon"
+
+- name: Configure inspector services
+  when:
+    - mpt_inspector is defined and mpt_inspector == true
+  template:
+    src: templates/mpt-broker-inspector.j2
+    dest: "/etc/sysconfig/mpt-broker-inspector"
+    owner: "root"
+    group: "root"
+    mode: 0755
+  notify: "Restart inspector daemon"
+
+
+- name: Configure data server services
+  template:
+    src: templates/mpt-data-server.j2
+    dest: "/etc/sysconfig/mpt-data-server"
+    owner: "root"
+    group: "root"
+    mode: 0755
+  notify: "Restart data server daemon"

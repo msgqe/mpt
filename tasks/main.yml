@@ -35,3 +35,7 @@
 - name: Install testing binaries
   when: mpt_devel == false
   include: binary-testing.yml
+
+
+- name: Configure service files
+  include: services.yml
