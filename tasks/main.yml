@@ -36,6 +36,13 @@
   when: mpt_devel == false
   include: binary-testing.yml
 
-
 - name: Configure service files
   include: services.yml
+
+- name: Test node performance tunning
+  template:
+    src: templates/80-mpt.conf.j2
+    dest: "/etc/sysctl.d/80-mpt.conf"
+    owner: "root"
+    group: "root"
+    mode: 0755
