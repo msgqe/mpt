@@ -7,7 +7,9 @@
     owner: "root"
     group: "root"
     mode: 0755
-  notify: "Restart receiver daemon"
+  notify:
+    - "Reload systemd configuration"
+    - "Restart receiver daemon"
 
 - name: Configure sender services
   when:
@@ -18,7 +20,9 @@
     owner: "root"
     group: "root"
     mode: 0755
-  notify: "Restart sender daemon"
+  notify:
+    - "Reload systemd configuration"
+    - "Restart sender daemon"
 
 - name: Configure inspector services
   when:
@@ -29,7 +33,9 @@
     owner: "root"
     group: "root"
     mode: 0755
-  notify: "Restart inspector daemon"
+  notify:
+    - "Reload systemd configuration"
+    - "Restart inspector daemon"
 
 
 - name: Configure data server services
@@ -39,4 +45,6 @@
     owner: "root"
     group: "root"
     mode: 0755
-  notify: "Restart data server daemon"
+  notify:
+    - "Reload systemd configuration"
+    - "Restart data server daemon"

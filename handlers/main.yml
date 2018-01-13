@@ -12,7 +12,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 ---
-# handlers file for load-generator-dev
+- name: Reload data server systemd configuration
+  systemd:
+      daemon_reload: yes
+  listen: "Reload systemd configuration"
+
 - name: Restart sender daemon
   service:
       name: mpt-sender-daemon
