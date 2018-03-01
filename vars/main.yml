@@ -13,3 +13,9 @@
 # limitations under the License.
 ---
 # vars file for mpt-devel
+mpt_common_dependencies: hdr-histogram-c, hdr-histogram-c-devel, paho-c, paho-c-devel, libuuid, libuuid-devel, zlib, zlib-devel, readline, readline-devel, qpid-proton-c, qpid-proton-c-devel, gdb, gdb-gdbserver, msgpack, msgpack-devel
+gru_common_dependencies: git,uriparser,uriparser-devel,cmake,doxygen,gcc,gcc-c++,make,ccache
+litestomp_common_dependencies: apr, apr-devel, apr-util, apr-util-devel
+bmic_common_dependencies: json-c, json-c-devel, curl, curl-devel
+
+centos_copr_repos: [ "{{ mpt_copr_base_url }}/orp-tools-testing/repo/epel-7/{{ mpt_copr_user }}-orp-tools-testing-epel-7.repo", "{{ mpt_copr_base_url }}/third-party-tools-testing/repo/epel-7/{{ mpt_copr_user }}-third-party-tools-testing-epel-7.repo", "{{ mpt_copr_base_url }}/paho-testing/repo/epel-7/{{ mpt_copr_user}}-paho-testing-epel-7.repo" ]

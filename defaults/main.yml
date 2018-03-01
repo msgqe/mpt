@@ -14,22 +14,19 @@
 ---
 # GRU defaults
 gru_dev_el6_missing: https://copr.fedorainfracloud.org/coprs/orpiske/el6-missing/repo/epel-6/orpiske-el6-missing-epel-6.repo
-gru_common_dependencies: git,uriparser,uriparser-devel,cmake,doxygen,gcc,gcc-c++,make,ccache
+
 gru_src_dir: /src/gru
 gru_build_dir: "{{ gru_src_dir }}/build"
 
 # LiteStomp defaults
-litestomp_common_dependencies: apr, apr-devel, apr-util, apr-util-devel
 litestomp_src_dir: /src/litestomp
 litestomp_build_dir: "{{ litestomp_src_dir }}/build"
 
 # BMIC defaults
-bmic_common_dependencies: json-c, json-c-devel, curl, curl-devel
 bmic_src_dir: /src/bmic
 bmic_build_dir: "{{ bmic_src_dir }}/build"
 
 # MPT defaults:
-mpt_common_dependencies: hdr-histogram-c, hdr-histogram-c-devel, paho-c, paho-c-devel, libuuid, libuuid-devel, zlib, zlib-devel, readline, readline-devel, qpid-proton-c, qpid-proton-c-devel, gdb, gdb-gdbserver, msgpack, msgpack-devel
 mpt_src_dir: /src/mpt
 mpt_scm_branch: master
 mpt_build_dir: "{{ mpt_src_dir }}/build"
@@ -44,7 +41,5 @@ mpt_devel_skip_provisioning: false
 mpt_devel: false
 mpt_copr_user: orpiske
 mpt_copr_base_url: "https://copr.fedorainfracloud.org/coprs/{{ mpt_copr_user }}"
-centos_copr_repos: [ "{{ mpt_copr_base_url }}/orp-tools-testing/repo/epel-7/{{ mpt_copr_user }}-orp-tools-testing-epel-7.repo", "{{ mpt_copr_base_url }}/third-party-tools-testing/repo/epel-7/{{ mpt_copr_user }}-third-party-tools-testing-epel-7.repo", "{{ mpt_copr_base_url }}/paho-testing/repo/epel-7/{{ mpt_copr_user}}-paho-testing-epel-7.repo" ]
 
-mpt_copr_el_packages: yum-plugin-copr
 mpt_copr_fedora_packages: dnf-plugins-core
