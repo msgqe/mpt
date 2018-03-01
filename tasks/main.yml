@@ -22,17 +22,17 @@
 
 - name: Build LiteStomp
   tags:
-      - mpt
-      - source
-      - litestomp
+    - mpt
+    - source
+    - litestomp
   when: mpt_devel == true
   include: litestomp.yml
 
 - name: Build BMIC
   tags:
-      - mpt
-      - source
-      - bmic
+    - mpt
+    - source
+    - bmic
   when: mpt_devel == true
   include: bmic.yml
 
@@ -51,15 +51,20 @@
 
 - name: Install testing binaries
   tags:
-      - mpt
-      - binary
+    - mpt
+    - binary
   when: mpt_devel == false
   include: binary-testing.yml
 
 - name: Configure service files
+  tags:
+    - mpt
+    - services
   include: services.yml
 
 - name: Test node performance tunning
+  tags:
+    - mpt
   template:
     src: templates/80-mpt.conf.j2
     dest: "/etc/sysctl.d/80-mpt.conf"
