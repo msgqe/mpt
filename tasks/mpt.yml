@@ -13,18 +13,6 @@
 # limitations under the License.
 ---
 # tasks file for MPT
-- name: Check Paho MQTT repository repo file presence
-  stat: path="/etc/yum.repos.d/paho-testing.repo"
-  register: paho_repo_path_st
-
-- name: Ensure that Paho MQTT repository is installed
-  when:
-    - paho_repo_path_st.stat.exists is not defined or paho_repo_path_st.stat.exists == false
-  get_url:
-    url: "https://copr.fedorainfracloud.org/coprs/orpiske/paho-testing/repo/epel-{{ ansible_distribution_major_version }}/orpiske-paho-testing-epel-{{ ansible_distribution_major_version }}.repo"
-    dest: "/etc/yum.repos.d/paho-testing.repo"
-    force: yes
-
 - name: Check TPP tools repository repo file presence
   stat: path="/etc/yum.repos.d/opiske-tpp-testing.repo"
   register: tpp_repo_path_st
