@@ -13,26 +13,46 @@
 # limitations under the License.
 ---
 - name: Build GRU
+  tags:
+    - mpt
+    - source
+    - gru
   when: mpt_devel == true
   include: gru.yml
 
 - name: Build LiteStomp
+  tags:
+      - mpt
+      - source
+      - litestomp
   when: mpt_devel == true
   include: litestomp.yml
 
 - name: Build BMIC
+  tags:
+      - mpt
+      - source
+      - bmic
   when: mpt_devel == true
   include: bmic.yml
 
 - name: Enable NTP
-  when: mpt_devel == true
+  tags:
+    - mpt
+    - ntpdate
   include: ntpdate.yml
 
 - name: Build MPT
+  tags:
+    - mpt
+    - source
   when: mpt_devel == true
   include: mpt.yml
 
 - name: Install testing binaries
+  tags:
+      - mpt
+      - binary
   when: mpt_devel == false
   include: binary-testing.yml
 
