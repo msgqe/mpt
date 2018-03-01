@@ -19,7 +19,7 @@
 # Ref: https://bugzilla.redhat.com/show_bug.cgi?id=1319685
 - name: Download COPR repository (CentOS)
   when:
-    - ansible_distribution == 'CentOS'
+    - ansible_distribution == 'CentOS' or  ansible_distribution == 'RedHat'
   get_url:
     url: "{{ item }}"
     dest: "/etc/yum.repos.d/{{ item | basename }}"
@@ -27,24 +27,10 @@
   with_items:
     - "{{ centos_copr_repos }}"
 
-- name: Install COPR plugin (RHEL)
-  when:
-    - ansible_distribution == 'RedHat'
-  package: name="{{ mpt_copr_el_packages }}" state=latest enablerepo=epel
-
-- name: Install COPR plugin (RHEL)
+- name: Install COPR plugin (Fedora)
   when:
     - ansible_distribution == 'Fedora'
   package: name="{{ mpt_copr_fedora_packages }}" state=latest enablerepo=epel
-
-- name: Ensure that testing COPR is installed (RHEL/CentOS)
-  when:
-    - ansible_distribution == 'RedHat' or ansible_distribution == 'Fedora'
-  command: yum copr enable -y "{{ item }}"
-  with_items:
-    - orpiske/orp-tools-testing
-    - orpiske/third-party-tools-testing
-    - orpiske/paho-testing
 
 - name: Ensure that testing COPR is installed (Fedora)
   when:
